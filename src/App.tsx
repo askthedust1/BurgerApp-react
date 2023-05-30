@@ -9,11 +9,12 @@ import Ingredient from "./Ingredient/Ingredient";
 
 
 const INGREDIENTS: IIngredient[] = [
-    {name: 'Meat', price: 80, img: meatImage, id: 1},
-    {name: 'Cheese', price: 50, img: cheeseImage, id: 2},
-    {name: 'Salad', price: 10, img: saladImage, id: 3},
-    {name: 'Bacon', price: 60, img: baconImage, id: 4},
+    {name: 'Meat', price: 80, img: meatImage},
+    {name: 'Cheese', price: 50, img: cheeseImage},
+    {name: 'Salad', price: 10, img: saladImage},
+    {name: 'Bacon', price: 60, img: baconImage},
 ];
+
 
 function App() {
 
@@ -24,21 +25,41 @@ function App() {
         {name: 'Bacon', count: 0}
     ]);
 
+    const add = (name: string) => {
+        const ingredientsCopy = [...ingredients];
+        const index = ingredients.findIndex(ingr => ingr.name === name);
+        const ingredientCopy = { ...ingredientsCopy[index] };
+        ingredientCopy.count++;
+        ingredientsCopy[index] = ingredientCopy;
+        setIngredients(ingredientsCopy);
+    };
+
+    const deleteIngr = (name: string) => {
+        const ingredientsCopy = [...ingredients];
+        const index = ingredients.findIndex(ingr => ingr.name === name);
+        const ingredientCopy = { ...ingredientsCopy[index] };
+        if (ingredientCopy.count > 0) {
+            ingredientCopy.count--;
+            ingredientsCopy[index] = ingredientCopy;
+            setIngredients(ingredientsCopy);
+        }
+    }
+
+
+
   return (
     <div className="App">
-      <div>
-          {INGREDIENTS.map(item => {
-              return <Ingredient
-                  key={item.id}
-                  image={item.img}
-                  name={item.name}
-              />
-          })}
-      </div>
-      <div>
+        {ingredients.map((item, index) => (
+            <Ingredient  key={index}
+                         name={item.name}
+                         index={index}
+                         onAddIngr={() => add(item.name)}
+                         onDelIngr={() => deleteIngr(item.name)}
+                         count={item.count}
+                         />
+            ))}
 
-      </div>
-    </div>
+       </div>
   );
 }
 
