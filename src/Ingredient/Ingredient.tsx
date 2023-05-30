@@ -13,7 +13,7 @@ interface IIngredientProps {
     count: number;
 }
 
-const INGREDIENTS: IIngredient[] = [
+export const INGREDIENTS: IIngredient[] = [
     {name: 'Meat', price: 80, img: meatImage},
     {name: 'Cheese', price: 50, img: cheeseImage},
     {name: 'Salad', price: 10, img: saladImage},

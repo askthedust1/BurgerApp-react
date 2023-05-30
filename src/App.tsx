@@ -1,19 +1,8 @@
 import React, {useState} from 'react';
-import {IIngredient} from "./types";
-import meatImage from './assets/meatImg.png';
-import baconImage from './assets/baconImg.png';
-import cheeseImage from './assets/cheeseImg.png';
-import saladImage from './assets/saladImg.png';
-import './App.css';
+import { INGREDIENTS } from "./Ingredient/Ingredient"
 import Ingredient from "./Ingredient/Ingredient";
-
-
-const INGREDIENTS: IIngredient[] = [
-    {name: 'Meat', price: 80, img: meatImage},
-    {name: 'Cheese', price: 50, img: cheeseImage},
-    {name: 'Salad', price: 10, img: saladImage},
-    {name: 'Bacon', price: 60, img: baconImage},
-];
+import Total from "./Total/Total";
+import './App.css';
 
 
 function App() {
@@ -43,9 +32,22 @@ function App() {
             ingredientsCopy[index] = ingredientCopy;
             setIngredients(ingredientsCopy);
         }
-    }
+    };
 
 
+    const total = ingredients.reduce((acc, value) => {
+
+        let ingredient = INGREDIENTS.filter(ingredient => ingredient.name === value.name)[0];
+
+        if (ingredient) {
+            return acc + (ingredient.price * value.count);
+        }
+
+        return acc;
+
+    }, 30);
+
+    // console.log(total);
 
   return (
     <div className="App">
@@ -58,7 +60,7 @@ function App() {
                          count={item.count}
                          />
             ))}
-
+        <Total price={total} />
        </div>
   );
 }
