@@ -1,9 +1,9 @@
 import React from 'react';
-import {IIngredient} from "../types";
-import meatImage from "../assets/meatImg.png";
-import cheeseImage from "../assets/cheeseImg.png";
-import saladImage from "../assets/saladImg.png";
-import baconImage from "../assets/baconImg.png";
+import {IIngredient} from "../../types";
+import meatImage from "../../assets/meatImg.png";
+import cheeseImage from "../../assets/cheeseImg.png";
+import saladImage from "../../assets/saladImg.png";
+import baconImage from "../../assets/baconImg.png";
 
 interface IIngredientProps {
     onAddIngr: React.MouseEventHandler<Element>;

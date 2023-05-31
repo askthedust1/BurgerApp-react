@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import { INGREDIENTS } from "./Ingredient/Ingredient"
-import Ingredient from "./Ingredient/Ingredient";
-import Total from "./Total/Total";
-import Burger from "./Burger/Burger";
+import { INGREDIENTS } from "./components/Ingredient/Ingredient"
+import Ingredient from "./components/Ingredient/Ingredient";
+import Total from "./components/Total/Total";
+import Burger from "./components/Burger/Burger";
 import './App.css';
 
 
@@ -15,25 +15,56 @@ const App = () => {
         {name: 'Bacon', count: 0}
     ]);
 
-    const [addItem, setAddItem] = useState(['name']);
+    const [addItem, setAddItem] = useState<string[]>([]);
 
     const add = (name: string) => {
-        const ingredientsCopy = [...ingredients];
-        const index = ingredients.findIndex(ingr => ingr.name === name);
-        const ingredientCopy = { ...ingredientsCopy[index] };
-        ingredientCopy.count++;
-        addItem.push(ingredientCopy.name);
-        ingredientsCopy[index] = ingredientCopy;
-        setIngredients(ingredientsCopy);
+        // const ingredientsCopy = [...ingredients];
+        // const index = ingredients.findIndex(ingr => ingr.name === name);
+        // const ingredientCopy = { ...ingredientsCopy[index] };
+        // ingredientCopy.count++;
+        // addItem.push(ingredientCopy.name);
+        // ingredientsCopy[index] = ingredientCopy;
+        // setIngredients(ingredientsCopy);
+
+        setIngredients(prevState => {
+            return prevState.map(ingred => {
+                if (ingred.name === name) {
+                    return {
+                        ...ingred,
+                        count: ingred.count + 1,
+                    };
+                }
+                return ingred;
+            });
+        });
+
+        addItem.push(name);
+
     };
 
     console.log(addItem);
 
     const deleteIngr = (name: string) => {
 
-        const ingredientsCopy = [...ingredients];
-        const index = ingredients.findIndex(ingr => ingr.name === name);
-        const ingredientCopy = { ...ingredientsCopy[index] };
+        // const ingredientsCopy = [...ingredients];
+        // const index = ingredients.findIndex(ingr => ingr.name === name);
+        // const ingredientCopy = { ...ingredientsCopy[index] };
+
+
+
+        setIngredients(prevState => {
+            return prevState.map(ingred => {
+                if (ingred.name === name) {
+                    if (ingred.count > 0 ) {
+                        return {
+                            ...ingred,
+                            count: ingred.count - 1,
+                        };
+                    }
+                }
+                return ingred;
+            });
+        });
 
         const addItemCopy = [...addItem];
         const ind = addItem.indexOf(name);
@@ -43,11 +74,12 @@ const App = () => {
             setAddItem(addItemCopy);
         }
 
-        if (ingredientCopy.count > 0) {
-            ingredientCopy.count--;
-            ingredientsCopy[index] = ingredientCopy;
-            setIngredients(ingredientsCopy);
-        }
+
+        // if (ingredientCopy.count > 0) {
+        //     ingredientCopy.count--;
+        //     ingredientsCopy[index] = ingredientCopy;
+        //     setIngredients(ingredientsCopy);
+        // }
     };
 
     const getTotalSum = () => {
