@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import { INGREDIENTS } from "./components/Ingredient/Ingredient"
-import Ingredient from "./components/Ingredient/Ingredient";
+import { INGREDIENTS } from "./components/Ingredient/Ingredient";
 import Total from "./components/Total/Total";
 import Burger from "./components/Burger/Burger";
 import './App.css';
+import Ingredients from "./components/Ingredient/Ingredients";
 
 
 const App = () => {
@@ -96,17 +96,8 @@ const App = () => {
   return (
     <div className="App">
        <div className="wrap">
-           {ingredients.map((item, index) => (
-               <Ingredient  key={index}
-                            name={item.name}
-                            index={index}
-                            onAddIngr={() => add(item.name)}
-                            onDelIngr={() => deleteIngr(item.name)}
-                            count={item.count}
-               />
-           ))}
+           <Ingredients ingredients={ingredients} add={add} deleteIngr={deleteIngr} />
        </div>
-
         <div className="Burger">
             <Total price={getTotalSum()} />
             <div className="BreadTop">
@@ -119,9 +110,7 @@ const App = () => {
                 />
             ))}
             <div className="BreadBottom"></div>
-
        </div>
-
     </div>
   );
 }

@@ -3,3 +3,8 @@ export interface IIngredient {
     price: number;
     img: string;
 }
+
+export interface IIngredients {
+    name: string;
+    count: number;
+}
