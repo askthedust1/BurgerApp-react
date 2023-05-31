@@ -24,10 +24,9 @@ export const INGREDIENTS: IIngredient[] = [
 const Ingredient: React.FC<IIngredientProps> = props => {
 
     return (
-        <div>
+        <div className="wrap-inner">
             <img onClick={props.onAddIngr} className="pic" src={INGREDIENTS[props.index].img} alt="pic" />
-            <div>{props.name}</div>
-            x {props.count}
+            <h2>{props.name} x {props.count}</h2>
             <button onClick={props.onDelIngr}>Delete</button>
         </div>
     );
