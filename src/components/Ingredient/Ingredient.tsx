@@ -1,9 +1,9 @@
 import React from 'react';
 import {IIngredient} from "../../types";
-import meatImage from "../../assets/meatImg.png";
-import cheeseImage from "../../assets/cheeseImg.png";
-import saladImage from "../../assets/saladImg.png";
-import baconImage from "../../assets/baconImg.png";
+import meatImage from "../../assets/meatImg.svg";
+import cheeseImage from "../../assets/cheeseImg.svg";
+import saladImage from "../../assets/saladImg.svg";
+import baconImage from "../../assets/baconImg.svg";
 
 interface IIngredientProps {
     onAddIngr: React.MouseEventHandler<Element>;
@@ -27,7 +27,7 @@ const Ingredient: React.FC<IIngredientProps> = props => {
         <div className="wrap-inner">
             <img onClick={props.onAddIngr} className="pic" src={INGREDIENTS[props.index].img} alt="pic" />
             <h2>{props.name} x {props.count}</h2>
-            <button onClick={props.onDelIngr}>Delete</button>
+            <button onClick={props.onDelIngr}>X</button>
         </div>
     );
 };

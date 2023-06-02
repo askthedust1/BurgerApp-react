@@ -2,8 +2,11 @@ import React, {useState} from 'react';
 import { INGREDIENTS } from "./components/Ingredient/Ingredient";
 import Total from "./components/Total/Total";
 import Burger from "./components/Burger/Burger";
-import './App.css';
 import Ingredients from "./components/Ingredient/Ingredients";
+import './App.css';
+import BreadTop from "./components/Burger/BreadTop";
+import BreadBottom from "./components/Burger/BreadBottom";
+
 
 
 const App = () => {
@@ -18,14 +21,6 @@ const App = () => {
     const [addItem, setAddItem] = useState<string[]>([]);
 
     const add = (name: string) => {
-        // const ingredientsCopy = [...ingredients];
-        // const index = ingredients.findIndex(ingr => ingr.name === name);
-        // const ingredientCopy = { ...ingredientsCopy[index] };
-        // ingredientCopy.count++;
-        // addItem.push(ingredientCopy.name);
-        // ingredientsCopy[index] = ingredientCopy;
-        // setIngredients(ingredientsCopy);
-
         setIngredients(prevState => {
             return prevState.map(ingred => {
                 if (ingred.name === name) {
@@ -42,15 +37,7 @@ const App = () => {
 
     };
 
-    console.log(addItem);
-
     const deleteIngr = (name: string) => {
-
-        // const ingredientsCopy = [...ingredients];
-        // const index = ingredients.findIndex(ingr => ingr.name === name);
-        // const ingredientCopy = { ...ingredientsCopy[index] };
-
-
 
         setIngredients(prevState => {
             return prevState.map(ingred => {
@@ -74,12 +61,6 @@ const App = () => {
             setAddItem(addItemCopy);
         }
 
-
-        // if (ingredientCopy.count > 0) {
-        //     ingredientCopy.count--;
-        //     ingredientsCopy[index] = ingredientCopy;
-        //     setIngredients(ingredientsCopy);
-        // }
     };
 
     const getTotalSum = () => {
@@ -100,17 +81,15 @@ const App = () => {
        </div>
         <div className="Burger">
             <Total price={getTotalSum()} />
-            <div className="BreadTop">
-                <div className="Seeds1"></div>
-                <div className="Seeds2"></div>
-            </div>
+            <BreadTop />
             {addItem.map((item, index) => (
                 <Burger  key={index}
                          name={item}
                 />
             ))}
-            <div className="BreadBottom"></div>
+            <BreadBottom />
        </div>
+
     </div>
   );
 }

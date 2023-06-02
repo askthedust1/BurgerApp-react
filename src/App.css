@@ -1,6 +1,14 @@
 .App {
   text-align: center;
   display: flex;
+  border: 5px solid orange;
+  margin-top: 50px;
+  background: bisque;
+  border-radius: 10px;
+}
+
+img {
+  cursor: pointer;
 }
 
 #root {
@@ -13,8 +21,34 @@
   height: 100px;
 }
 
+.wrap {
+  border-right: 5px solid orange;
+}
+
 .wrap-inner {
   display: flex;
-  justify-content: center;
-  margin-top: 30px;
+  justify-content: space-between;
+  padding: 35px 10px;
+  width: 400px;
+  align-items: center;
+  border-bottom: 5px solid orange;
 }
+
+.wrap-inner:last-child {
+  border: none;
+}
+
+button {
+  background: red;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  padding: 10px 15px;
+}
+
+.title {
+  font-size: 30px;
+  margin-top: 10px;
+}
+

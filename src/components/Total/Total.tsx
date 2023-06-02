@@ -8,7 +8,7 @@ interface IIngredientProps {
 const Total: React.FC<IIngredientProps> = props => {
 
     return (
-        <h3>Price: {props.price}</h3>
+        <h3 className="title">Price: {props.price}</h3>
     );
 };
 
